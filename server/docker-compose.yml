@@ -18,7 +18,7 @@ services:
     expose:
       - 51820/udp
     volumes:
-      - ./wg0.conf:/config/wg0.conf
+      - .:/config
       - /lib/modules:/lib/modules
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
@@ -32,6 +32,8 @@ services:
     restart: unless-stopped
     entrypoint: |
       sh -c "
+        apt-get update &&
+        apt-get install -y jq
         chmod +x /app/init-v2ray-server.sh &&
         /app/init-v2ray-server.sh
       "
@@ -41,13 +43,12 @@ services:
       - 60123:1433/tcp
       - 60123:1433/udp
     volumes:
-      - ./v2config.json:/app/v2ray/config.json
-      - ./init-v2ray-server.sh:/app/init-v2ray-server.sh
+      - .:/app/v2ray
     networks:
       v2:
         ipv4_address: 10.13.13.3
 
 networks:
   v2:
-    external:
-      name: v2
+    name: v2
+    external: true
