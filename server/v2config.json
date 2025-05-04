@@ -10,7 +10,7 @@
       "settings": {
         "clients": [
           {
-            "id": "UUID",
+            "id": "UUID_REQUIRED",
             "alterId": 0,
             "security": "auto"
           }
