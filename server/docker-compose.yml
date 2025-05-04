@@ -31,7 +31,7 @@ services:
     container_name: v2ray
     restart: unless-stopped
     entrypoint: |
-      bash -c "
+      sh -c "
         chmod +x /app/init-v2ray-server.sh &&
         /app/init-v2ray-server.sh
       "
