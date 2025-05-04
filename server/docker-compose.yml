@@ -18,7 +18,7 @@ services:
     expose:
       - 51820/udp
     volumes:
-      - .:/config
+      - ./wg:/config
       - /lib/modules:/lib/modules
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
@@ -30,20 +30,21 @@ services:
     image: v2fly/v2fly-core:latest
     container_name: v2ray
     restart: unless-stopped
-    entrypoint: |
-      sh -c "
-        apt-get update &&
-        apt-get install -y jq
-        chmod +x /app/init-v2ray-server.sh &&
-        /app/init-v2ray-server.sh
-      "
     expose:
       - 51820/udp
     ports:
       - 60123:1433/tcp
       - 60123:1433/udp
     volumes:
-      - .:/app/v2ray
+      - ./v2ray:/app/v2ray
+      - ./init-scripts:/app/init-scripts
+    entrypoint: |
+      sh -c "
+        apk add --no-cache bash jq
+        chmod +x /app/init-v2ray-server.sh &&
+        /app/init-v2ray-server.sh
+        v2ray run -c /app/v2ray/config.json
+      "
     networks:
       v2:
         ipv4_address: 10.13.13.3
