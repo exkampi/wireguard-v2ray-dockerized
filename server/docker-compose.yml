@@ -3,6 +3,7 @@ services:
     image: linuxserver/wireguard:latest
     container_name: wg
     restart: unless-stopped
+    working_dir: /config
     environment:
       - PUID=1000
       - PGID=1000
@@ -18,8 +19,16 @@ services:
     expose:
       - 51820/udp
     volumes:
-      - ./wg:/config
+      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
+      - ../client/client.conf:/config/peer1/peer1.conf
+      - ./wg/gen-keys.sh:/app/gen-keys.sh
       - /lib/modules:/lib/modules
+    entrypoint: |
+      sh -c "
+        chmod +x /app/gen-keys.sh
+        /app/gen-keys.sh
+        exec /init
+      "
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     networks:
