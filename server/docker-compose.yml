@@ -13,6 +13,7 @@ services:
       - PEERS=1
       - PEERDNS=1.1.1.1,1.0.0.1
       - INTERNAL_SUBNET=10.13.13.0
+      - DEBUG=true
     cap_add:
       - SYS_MODULE
       - NET_ADMIN
