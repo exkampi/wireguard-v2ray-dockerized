@@ -21,7 +21,6 @@ services:
     expose:
       - 51820/udp
     volumes:
-      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
       - ../client/client.conf:/config/peer1/peer1.conf
       - ./wg/gen-keys.sh:/app/gen-keys.sh
       - /lib/modules:/lib/modules
