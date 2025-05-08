@@ -22,7 +22,8 @@ services:
     expose:
       - 51820/udp
     volumes:
-      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
+      - ./wg/template-server.conf:/config/templates/server.conf
+      - ./wg/template-peer.conf:/config/templates/peer.conf
       - /lib/modules:/lib/modules
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
