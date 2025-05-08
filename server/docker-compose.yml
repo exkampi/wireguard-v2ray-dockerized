@@ -12,7 +12,6 @@ services:
       - SERVERURL=auto
       - INTERNAL_SUBNET=10.13.13.0
       - SERVERPORT=51820
-      - ALLOWEDIPS=10.13.13.4/32
       - PEERS=1
       - CLIENT_IP=10.13.13.4/32
       - PEERDNS=1.1.1.1,1.0.0.1
@@ -23,7 +22,7 @@ services:
       - 51820/udp
     volumes:
       - ./wg/template-server.conf:/config/templates/server.conf
-#      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
+      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
 #      - ./wg/template-peer.conf:/config/templates/peer.conf
       - /lib/modules:/lib/modules
     sysctls:
