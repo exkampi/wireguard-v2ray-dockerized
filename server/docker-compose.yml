@@ -1,6 +1,7 @@
 services:
   wg:
-    image: linuxserver/wireguard:latest
+    build:
+      context: https://github.com/exkampi/docker-wireguard.git
     container_name: wg
     restart: unless-stopped
     working_dir: /config
@@ -8,13 +9,13 @@ services:
       - PUID=1000
       - PGID=1000
       - TZ=Etc/UTC
-      - SERVERURL=auto
-      - SERVERPORT=51820
-      - PEERS=1
-      - PEERDNS=1.1.1.1,1.0.0.1
+      - SERVERURL=111.222.111.222
       - INTERNAL_SUBNET=10.13.13.0
       - PERSISTENTKEEPALIVE_PEERS=25
       - ALLOWEDIPS=10.13.13.4/32
+      - SERVERPORT=51820
+      - PEERS=1
+      - PEERDNS=1.1.1.1,1.0.0.1
     cap_add:
       - SYS_MODULE
       - NET_ADMIN
