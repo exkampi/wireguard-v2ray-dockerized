@@ -21,7 +21,6 @@ services:
       - 51820/udp
     volumes:
       - ./wg/template-server.conf:/config/templates/server.conf
-      - ./wg/template-peer.conf:/config/templates/peer.conf
       - ./wg/peer1.conf:/config/peer1/peer1.conf
       - /lib/modules:/lib/modules
     sysctls:
