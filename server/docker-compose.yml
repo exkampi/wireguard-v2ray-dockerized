@@ -10,19 +10,18 @@ services:
       - PGID=1000
       - TZ=Europe/Samara
       - SERVERURL=auto
-      - INTERNAL_SUBNET=10.13.13.0
       - SERVERPORT=51820
       - PEERS=1
       - PEERDNS=1.1.1.1,1.0.0.1
+      - INTERNAL_SUBNET=10.13.13.0
+      - ALLOWEDIPS=10.13.13.4/32
     cap_add:
       - SYS_MODULE
       - NET_ADMIN
     expose:
       - 51820/udp
     volumes:
-      - ./wg/template-server.conf:/config/templates/server.conf
-      - ./wg/template-peer.conf:/config/templates/peer.conf
-#      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
+      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
       - /lib/modules:/lib/modules
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
