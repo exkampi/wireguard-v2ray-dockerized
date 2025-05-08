@@ -12,9 +12,9 @@ services:
       - SERVERURL=auto
       - INTERNAL_SUBNET=10.13.13.0
       - SERVERPORT=51820
-      - ALLOWEDIPS=10.13.13.4/32
       - PEERS=1
       - PEERDNS=1.1.1.1,1.0.0.1
+      - PEER_ADDRESSES=10.13.13.4
     cap_add:
       - SYS_MODULE
       - NET_ADMIN
