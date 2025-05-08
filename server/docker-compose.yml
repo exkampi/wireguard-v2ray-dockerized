@@ -18,7 +18,7 @@ services:
       - PEERDNS=1.1.1.1,1.0.0.1
     cap_add:
       - SYS_MODULE
-      - NET_ADMALLOWEDIPSIN
+      - NET_ADMIN
     expose:
       - 51820/udp
     volumes:
