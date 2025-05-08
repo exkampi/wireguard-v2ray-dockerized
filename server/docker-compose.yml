@@ -14,7 +14,6 @@ services:
       - SERVERPORT=51820
       - PEERS=1
       - PEERDNS=1.1.1.1,1.0.0.1
-      - PEER_ADDRESSES=10.13.13.4
     cap_add:
       - SYS_MODULE
       - NET_ADMIN
@@ -23,7 +22,6 @@ services:
     volumes:
       - ./wg/template-server.conf:/config/templates/server.conf
       - ./wg/template-peer.conf:/config/templates/peer.conf
-      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
       - /lib/modules:/lib/modules
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
