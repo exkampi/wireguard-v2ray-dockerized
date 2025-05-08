@@ -22,7 +22,7 @@ services:
     volumes:
       - ./wg/template-server.conf:/config/templates/server.conf
       - ./wg/template-peer.conf:/config/templates/peer.conf
-#      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
+      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
       - /lib/modules:/lib/modules
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
