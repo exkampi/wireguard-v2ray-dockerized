@@ -5,23 +5,24 @@ services:
     restart: unless-stopped
     working_dir: /config
     environment:
+      - LOG_CONFS=false
       - PUID=1000
       - PGID=1000
-      - TZ=Etc/UTC
+      - TZ=Europe/Samara
       - SERVERURL=auto
       - SERVERPORT=51820
       - PEERS=1
       - PEERDNS=1.1.1.1,1.0.0.1
       - INTERNAL_SUBNET=10.13.13.0
       - PERSISTENTKEEPALIVE_PEERS=25
-      - ALLOWEDIPS=10.13.13.4
+      - ALLOWEDIPS=10.13.13.4/32
     cap_add:
       - SYS_MODULE
       - NET_ADMIN
     expose:
       - 51820/udp
     volumes:
-      - ../client/client.conf:/config/peer1/peer1.conf
+      - ./wg/wg0.conf:/config/wg_confs/wg0.conf
       - /lib/modules:/lib/modules
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
