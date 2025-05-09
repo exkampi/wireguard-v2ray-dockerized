@@ -8,7 +8,6 @@ services:
       - LOG_CONFS=false
       - PUID=1000
       - PGID=1000
-      - TZ=Europe/Samara
       - SERVERURL=auto
       - INTERNAL_SUBNET=10.13.13.0
       - SERVERPORT=51820
