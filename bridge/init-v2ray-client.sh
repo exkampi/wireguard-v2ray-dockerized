@@ -17,19 +17,22 @@ if [ ! -f "$CONFIG_FILE" ]; then
     exit 1
 fi
 
-jq --arg uuid "$UUID" --arg server_ip "$SERVER_IP" '.outbounds[0].settings.vnext[0].address = $server_ip | .outbounds[0].settings.vnext[0].users[0].id = $uuid' "$CONFIG_FILE" > /tmp/config.json.tmp
+cp "$CONFIG_FILE" /tmp/config.json.tmp
+
+sed -i 's/"address": "SERVER_PUBLIC_IP_REQUIRED"/"address": "'"$SERVER_IP"'"/g' /tmp/config.json.tmp
+sed -i 's/"id": "UUID_REQUIRED"/"id": "'"$UUID"'"/g' /tmp/config.json.tmp
 
 if [ $? -ne 0 ]; then
     echo "Ошибка при модификации конфигурационного файла"
     exit 1
 fi
 
-mv /tmp/config.json.tmp "$CONFIG_FILE"
+cat /tmp/config.json.tmp > "$CONFIG_FILE"
 
-v2ray -test -config="$CONFIG_FILE"
+v2ray test -c "$CONFIG_FILE"
 if [ $? -ne 0 ]; then
     echo "Ошибка в конфигурационном файле. Запуск отменен."
     exit 1
 fi
 
-exec v2ray -config="$CONFIG_FILE"
+exec v2ray run -c "$CONFIG_FILE"

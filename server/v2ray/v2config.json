@@ -1,21 +1,21 @@
 {
   "log": {
-    "loglevel": "info"
+    "loglevel": "debug"
   },
   "inbounds": [
     {
       "port": 1433,
       "listen": "0.0.0.0",
-      "protocol": "vmess",
+      "protocol": "vless",
       "settings": {
         "clients": [
           {
             "id": "UUID_REQUIRED",
-            "alterId": 0,
-            "security": "auto"
+            "level": 0,
+            "email": "user@example.com"
           }
         ],
-        "udp": false
+        "decryption": "none"
       },
       "streamSettings": {
         "network": "tcp",
