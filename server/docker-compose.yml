@@ -22,13 +22,8 @@ services:
       - 51820/udp
     volumes:
       - ./wg:/app/tmp
+      - ./wg/copy-files.sh:/custom-cont-init.d/copy-files.sh
       - /lib/modules:/lib/modules
-    command: |
-      sh -c "
-        cp /app/tmp/template-server.conf /config/templates/server.conf
-        cp /app/tmp/peer1.conf /config/peer1/peer1.conf
-        exec /init
-      "
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     networks:
