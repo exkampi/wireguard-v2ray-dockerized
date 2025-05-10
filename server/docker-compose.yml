@@ -21,9 +21,14 @@ services:
     expose:
       - 51820/udp
     volumes:
-      - ./wg/template-server.conf:/config/templates/server.conf
-      - ./wg/peer1.conf:/config/peer1/peer1.conf
+      - ./wg:/app/tmp
       - /lib/modules:/lib/modules
+    command: |
+      sh -c "
+        cp /app/tmp/template-server.conf /config/templates/server.conf
+        cp /app/tmp/peer1.conf /config/peer1/peer1.conf
+        exec /init
+      "
     sysctls:
       - net.ipv4.conf.all.src_valid_mark=1
     networks:
@@ -34,19 +39,21 @@ services:
     image: v2fly/v2fly-core:latest
     container_name: v2ray
     restart: unless-stopped
+    working_dir: /app
     expose:
       - 51820/udp
     ports:
       - 60123:1433/tcp
       - 60123:1433/udp
     volumes:
-      - ./v2ray:/app/v2ray
-      - ./init-scripts:/app/init-scripts
+      - ./v2ray:/app/tmp
     entrypoint: |
       sh -c "
-        chmod +x /app/init-scripts/init-v2ray-server.sh &&
-        /app/init-scripts/init-v2ray-server.sh
-        v2ray run -c /app/v2ray/v2config.json
+        cp /app/tmp/v2config.json /app/v2config.json &&
+        cp /app/tmp/init-v2ray-server.sh /app/init-v2ray-server.sh &&
+        chmod +x /app/init-v2ray-server.sh &&
+        /app/init-v2ray-server.sh
+        v2ray run -c /app/v2config.json
       "
     networks:
       v2:
