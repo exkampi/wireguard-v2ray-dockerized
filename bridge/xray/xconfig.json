@@ -1,0 +1,50 @@
+{
+  "log": {
+    "loglevel": "warning"
+  },
+  "inbounds": [
+    {
+      "tag": "wireguard",
+      "port": 51820,
+      "protocol": "dokodemo-door",
+      "settings": {
+        "address": "10.13.13.2",
+        "port": 51820,
+        "network": "udp"
+      }
+    }
+  ],
+  "outbounds": [
+    {
+      "protocol": "vless",
+      "settings": {
+        "vnext": [
+          {
+            "address": "${SERVER_ADDRESS}",
+            "port": 60123,
+          "users": [
+            {
+              "id": "${CLIENT_UUID}",
+              "encryption": "none",
+              "flow": ""
+            }
+          ]
+          }
+        ]
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "fingerprint": "chrome",
+          "serverName": "www.google.com",
+          "publicKey": "${PUBLIC_KEY}",
+          "shortId": "${SHORT_IDS}",
+          "spiderX": ""
+        }
+      },
+      "tag": "proxy"
+    }
+  ]
+}
