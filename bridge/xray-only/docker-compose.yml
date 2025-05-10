@@ -1,0 +1,22 @@
+services:
+  xray:
+    image: teddysun/xray:latest
+    container_name: xray
+    restart: unless-stopped
+    working_dir: /app
+    environment:
+      - UUID=${UUID}
+      - SERVER_IP=${SERVER_IP}
+    ports:
+      - 51820:51820
+      - 51820:51820/udp
+    volumes:
+      - ./xconfig.json:/app/xconfig.json
+      - ./client-params.env:/app/client-params.env
+      - ./init-xray-client.sh:/app/init-xray-client.sh
+    entrypoint: |
+      sh -c "
+        chmod +x /app/init-xray-client.sh &&
+        /app/init-xray-client.sh &&
+        xray run -c /app/xconfig.json
+      "
