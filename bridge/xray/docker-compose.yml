@@ -13,10 +13,10 @@ services:
     volumes:
       - ./xconfig.json:/app/xconfig.json
       - ./client-params.env:/app/client-params.env
-      - ./init-xray-client.sh:/app/init-v2ray-client.sh
+      - ./init-xray-client.sh:/app/init-xray-client.sh
     entrypoint: |
       sh -c "
-        chmod +x /app/init-xray-server.sh &&
-        /app/init-xray-server.sh &&
+        chmod +x /app/init-xray-client.sh &&
+        /app/init-xray-client.sh &&
         xray run -c /app/xconfig.json
       "

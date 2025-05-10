@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 PARAMS_FILE="client-params.env"
 
@@ -44,9 +44,3 @@ if [ $? -ne 0 ]; then
 fi
 
 cat /tmp/config.json.tmp > "$CONFIG_FILE"
-
-v2ray test -c "$CONFIG_FILE"
-if [ $? -ne 0 ]; then
-    echo "Ошибка в конфигурационном файле. Запуск отменен."
-    exit 1
-fi
