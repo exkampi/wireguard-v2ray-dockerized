@@ -5,8 +5,8 @@ services:
     restart: unless-stopped
     working_dir: /app
     ports:
-      - 443:1433/tcp
-      - 443:1433/udp
+      - "443:1443/tcp"
+      - "443:1443/udp"
     volumes:
       - ./:/app/tmp
     entrypoint: |
