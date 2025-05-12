@@ -36,10 +36,10 @@ services:
     restart: unless-stopped
     working_dir: /app
     expose:
-      - 51820/udp
+      - "51820/udp"
     ports:
-      - 60123:1433/tcp
-      - 60123:1433/udp
+      - "60123:1433/tcp"
+      - "60123:1433/udp"
     volumes:
       - ./xray:/app/tmp
     entrypoint: |

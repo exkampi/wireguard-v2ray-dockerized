@@ -1,17 +1,18 @@
 {
   "log": {
-    "loglevel": "warning"
+    "loglevel": "debug"
   },
   "inbounds": [
     {
       "listen": "0.0.0.0",
-      "port": 1433,
+      "port": 1443,
       "protocol": "vless",
       "settings": {
         "clients": [
           {
             "id": "${CLIENT_UUID}",
-            "flow": ""
+            "flow": "xtls-rprx-vision",
+            "level": 0
           }
         ],
         "decryption": "none"
@@ -21,15 +22,11 @@
         "security": "reality",
         "realitySettings": {
           "show": false,
-          "dest": "www.google.com:443",
+          "dest": "duckduckgo.com:443",
           "xver": 0,
-          "serverNames": [
-            "www.google.com"
-          ],
+          "serverNames": ["duckduckgo.com"],
           "privateKey": "${PRIVATE_KEY}",
-          "shortIds": [
-            "${SHORT_IDS}"
-          ]
+          "shortIds": [""]
         }
       }
     }
@@ -38,6 +35,20 @@
     {
       "protocol": "freedom",
       "tag": "direct"
+    },
+    {
+      "protocol": "blackhole",
+      "tag": "block"
     }
-  ]
+  ],
+  "routing": {
+    "domainStrategy": "AsIs",
+    "rules": [
+      {
+        "type": "field",
+        "ip": ["geoip:private"],
+        "outboundTag": "block"
+      }
+    ]
+  }
 }

@@ -21,6 +21,5 @@ CONFIG_FILE="/app/xconfig.json"
 
 sed -i "s|\${CLIENT_UUID}|$CLIENT_UUID|g" "$CONFIG_FILE"
 sed -i "s|\${PRIVATE_KEY}|$PRIVATE_KEY|g" "$CONFIG_FILE"
-sed -i "s|\${SHORT_IDS}|$SHORT_IDS|g" "$CONFIG_FILE"
 
 printf "PUBLIC_KEY=%s\nCLIENT_UUID=%s\nSHORT_IDS=%s\nSERVER_ADDRESS=%s\n" "$PUBLIC_KEY" "$CLIENT_UUID" "$SHORT_IDS" "$SERVER_ADDRESS" > client-params.env

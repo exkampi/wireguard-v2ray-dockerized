@@ -4,9 +4,6 @@ services:
     container_name: xray
     restart: unless-stopped
     working_dir: /app
-    environment:
-      - UUID=${UUID}
-      - SERVER_IP=${SERVER_IP}
     ports:
       - 51820:51820
       - 51820:51820/udp

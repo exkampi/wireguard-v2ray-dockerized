@@ -27,12 +27,13 @@
       "settings" : {
         "vnext" : [
           {
-            "address" : "social-realty.youfast.click",
+            "address" : "153.92.126.226",
             "port" : 443,
             "users" : [
               {
                 "encryption" : "none",
-                "id" : "89cc1022-a5c9-41fa-8500-a84067a7eb49"
+                "flow" : "xtls-rprx-vision",
+                "id" : "1755e244-82b4-4596-8f5b-c0f10dac7582"
               }
             ]
           }
@@ -42,7 +43,7 @@
         "network" : "tcp",
         "realitySettings" : {
           "fingerprint" : "chrome",
-          "publicKey" : "SbVKOEMjK0sIlbwg4akyBg5mL5KZwwB-ed4eEE7YnRc",
+          "publicKey" : "FnhIJkKjeE65JL3ev1WNpFbLebDEGCaig-HLxgMgNzc",
           "serverName" : "duckduckgo.com"
         },
         "security" : "reality",
