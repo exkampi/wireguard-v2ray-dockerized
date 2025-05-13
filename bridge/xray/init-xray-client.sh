@@ -36,7 +36,7 @@ cp "$CONFIG_FILE" /tmp/config.json.tmp
 sed -i 's|\${SERVER_ADDRESS}|'"$SERVER_ADDRESS"'|g' /tmp/config.json.tmp
 sed -i 's|\${CLIENT_UUID}|'"$CLIENT_UUID"'|g' /tmp/config.json.tmp
 sed -i 's|\${PUBLIC_KEY}|'"$PUBLIC_KEY"'|g' /tmp/config.json.tmp
-sed -i 's|\${SHORT_IDS}|'"$SHORT_IDS"'|g' /tmp/config.json.tmp
+#sed -i 's|\${SHORT_IDS}|'"$SHORT_IDS"'|g' /tmp/config.json.tmp
 
 if [ $? -ne 0 ]; then
     echo "Ошибка при модификации конфигурационного файла"

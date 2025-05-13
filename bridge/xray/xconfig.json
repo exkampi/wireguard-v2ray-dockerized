@@ -40,7 +40,6 @@
           "fingerprint": "chrome",
           "serverName": "www.google.com",
           "publicKey": "${PUBLIC_KEY}",
-          "shortId": "${SHORT_IDS}",
           "spiderX": ""
         }
       },
