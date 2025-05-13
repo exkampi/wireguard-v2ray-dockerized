@@ -28,6 +28,9 @@
           "privateKey": "${PRIVATE_KEY}",
           "shortIds": [""]
         }
+      },
+      "sniffing": {
+        "enabled": false
       }
     }
   ],
@@ -35,20 +38,6 @@
     {
       "protocol": "freedom",
       "tag": "direct"
-    },
-    {
-      "protocol": "blackhole",
-      "tag": "block"
     }
-  ],
-  "routing": {
-    "domainStrategy": "AsIs",
-    "rules": [
-      {
-        "type": "field",
-        "ip": ["geoip:private"],
-        "outboundTag": "block"
-      }
-    ]
-  }
+  ]
 }

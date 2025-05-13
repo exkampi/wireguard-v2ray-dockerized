@@ -30,8 +30,7 @@
         }
       },
       "sniffing": {
-        "enabled": true,
-        "destOverride": ["http", "tls", "quic", "fakedns"]
+        "enabled": false
       }
     }
   ],
@@ -45,6 +44,13 @@
       "tag": "block"
     }
   ],
+  "dns": {
+    "servers": [
+      "1.1.1.1",
+      "1.0.0.1"
+    ],
+    "queryStrategy": "UseIP"
+  },
   "routing": {
     "domainStrategy": "AsIs",
     "rules": [
