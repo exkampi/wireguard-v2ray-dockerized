@@ -9,10 +9,10 @@ CLIENT_UUID=$(uuidgen)
 CONFIG_FILE="/app/xconfig.json"
 SNI=$(jq -r '.inbounds[0].streamSettings.realitySettings.serverNames[0]' "$CONFIG_FILE")
 FINGERPRINT=$(jq -r '.inbounds[0].streamSettings.realitySettings.fingerprint' "$CONFIG_FILE")
-SHORT_ID=$(jq -r '.inbounds[0].streamSettings.realitySettings.shortIds[0]' "$CONFIG_FILE")
-PORT=$(jq -r '.inbounds[0].port' "$CONFIG_FILE")
 FLOW=$(jq -r '.inbounds[0].settings.clients[0].flow' "$CONFIG_FILE")
 SERVER_ADDRESS=$(curl -s https://api.ipify.org?format=text)
+SECURITY=$(jq -r '.inbounds[0].streamSettings.security' "$CONFIG_FILE")
+NETWORK=$(jq -r '.inbounds[0].streamSettings.network' "$CONFIG_FILE")
 
 jq --arg uuid "$CLIENT_UUID" \
    --arg private_key "$PRIVATE_KEY" \
@@ -20,5 +20,5 @@ jq --arg uuid "$CLIENT_UUID" \
     .inbounds[0].streamSettings.realitySettings.privateKey = $private_key' \
    "$CONFIG_FILE" > /tmp/xconfig_tmp.json && mv /tmp/xconfig_tmp.json "$CONFIG_FILE"
 
-CLIENT_LINK="vless://${CLIENT_UUID}@${SERVER_ADDRESS}:${PORT}?security=reality&type=tcp&sni=${SNI}&fp=${FINGERPRINT}&pbk=${PUBLIC_KEY}&flow=${FLOW}&sid=${SHORT_ID}#xray-server"
-printf "%s\n" "$CLIENT_LINK" > /app/client-vless-url.txt
+CLIENT_LINK="vless://${CLIENT_UUID}@${SERVER_ADDRESS}:443?security=${SECURITY}&type=${NETWORK}&sni=${SNI}&fp=${FINGERPRINT}&pbk=${PUBLIC_KEY}&flow=${FLOW}&sid=#xray-server"
+echo "$CLIENT_LINK" | tee /app/client-vless-url.txt
