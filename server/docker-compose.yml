@@ -38,8 +38,8 @@ services:
     expose:
       - "51820/udp"
     ports:
-      - "60123:1433/tcp"
-      - "60123:1433/udp"
+      - "60123:1443/tcp"
+      - "60123:1443/udp"
     volumes:
       - ./xray:/app/tmp
     entrypoint: |
