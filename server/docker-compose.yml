@@ -26,6 +26,7 @@ services:
   wg:
     image: linuxserver/wireguard:latest
     container_name: wg
+    working_dir: /config
     cap_add:
       - NET_ADMIN
       - SYS_MODULE

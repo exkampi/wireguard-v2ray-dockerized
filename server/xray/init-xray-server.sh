@@ -20,5 +20,11 @@ jq --arg uuid "$CLIENT_UUID" \
     .inbounds[0].streamSettings.realitySettings.privateKey = $private_key' \
    "$CONFIG_FILE" > /tmp/xconfig_tmp.json && mv /tmp/xconfig_tmp.json "$CONFIG_FILE"
 
+echo "VLESS URL:"
 CLIENT_LINK="vless://${CLIENT_UUID}@${SERVER_ADDRESS}:443?security=${SECURITY}&type=${NETWORK}&sni=${SNI}&fp=${FINGERPRINT}&pbk=${PUBLIC_KEY}&flow=${FLOW}&sid=#xray-server"
 echo "$CLIENT_LINK" | tee /app/client-vless-url.txt
+
+echo "CLIENT PARAMS:"
+echo "SERVER_ADDRESS=${SERVER_ADDRESS}"
+echo "CLIENT_UUID=${CLIENT_UUID}"
+echo "PUBLIC_KEY=${PUBLIC_KEY}"
