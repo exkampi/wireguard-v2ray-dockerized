@@ -19,11 +19,6 @@ if [ -z "$CLIENT_UUID" ]; then
     exit 1
 fi
 
-if [ -z "$SHORT_IDS" ]; then
-    echo "Ошибка: Переменная SHORT_IDS не установлена в файле $PARAMS_FILE"
-    exit 1
-fi
-
 CONFIG_FILE="/app/xconfig.json"
 
 if [ ! -f "$CONFIG_FILE" ]; then

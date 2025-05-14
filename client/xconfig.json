@@ -38,7 +38,7 @@
         "realitySettings": {
           "show": false,
           "fingerprint": "chrome",
-          "serverName": "www.google.com",
+          "serverName": "duckduckgo.com",
           "publicKey": "${PUBLIC_KEY}",
           "spiderX": ""
         }
